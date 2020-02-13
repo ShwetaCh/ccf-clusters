@@ -1,9 +1,9 @@
 # ccf-clusters
 Finding the number of cluster in a tumor using CCF values
 
-# INPUT
+# Input
 Mafanno'ed maf with ccf_expected_copies_em column
 
-# OUPUT
+# Output
 Number of clusters along with a CCF dot-plot, CCF densit-plot, and the Gap-statistic plot
 
