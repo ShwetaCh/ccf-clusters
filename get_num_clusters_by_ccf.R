@@ -23,12 +23,13 @@ for(i in 1:length(sampleid)){
     density_data = NULL
     density_data = density(data$ccf_expected_copies_em)
     p2 = plot(density_data, main = sampleid[i])
+  
+    formatted_data = NULL  
     formatted_data = as.data.frame(cbind(density_data$x, density_data$y)); names(formatted_data) = c('CCF','Density')
     head(formatted_data)
-    
     gap = NULL #
     gap <- clusGap(formatted_data, kmeans, K.max=ceiling(nmut/10), B=500)
-    p3 = plot(gap)
+    p3 = plot(gap, main = paste(sampleid[i],"predicted clusters=",k))
     k = NULL
     k <- maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax #firstmax #globalmax
     print(paste(sampleid[i],"nmut=",nmut,"clusters=",k,"...Done!\n")) #2
