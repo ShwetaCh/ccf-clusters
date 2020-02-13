@@ -27,7 +27,7 @@ for(i in 1:length(sampleid)){
     head(formatted_data)
     
     gap = NULL #
-    gap <- clusGap(formatted_data, kmeans, K.max=ceiling(nmut/15), B=100)
+    gap <- clusGap(formatted_data, kmeans, K.max=ceiling(nmut/10), B=500)
     p3 = plot(gap)
     k = NULL
     k <- maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax #firstmax #globalmax
