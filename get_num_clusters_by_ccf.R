@@ -13,7 +13,7 @@ sampleid = c(
 length(sampleid)
 for(i in 1:length(sampleid)){
  # i=3
-  par(mfrow=c(3,1))
+  par(mfrow = c(3,1))
   set.seed(100)
   p1 = NULL; p2 = NULL; p3 = NULL;
   #wes
@@ -35,13 +35,13 @@ for(i in 1:length(sampleid)){
   head(formatted_data)
   gap = clusGap(formatted_data, kmeans, d.power = 2, K.max=ceiling(nmut/10), B=100) #
   k = maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax
-      if(nmut>=65){
-        cl=k+1}else{
+      if(nmut >= 65){
+        cl = k + 1} else{
         cl = k}
   p3 = plot(gap, main = paste(sampleid[i],"PREDICTED CLUSTERS=",cl))
       p1
       p2
       p3
-      print(paste(sampleid[i],"nmut=",nmut,"clusters=",cl,"...Done!"))
+      print(paste(sampleid[i],"nmut =",nmut,"clusters=",cl,"...Done!"))
   
 }
