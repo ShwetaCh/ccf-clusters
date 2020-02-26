@@ -29,10 +29,11 @@ for(i in 1:length(sampleid)){
     head(formatted_data)
     gap = NULL #
     gap <- clusGap(formatted_data, kmeans, K.max=ceiling(nmut/10), B=500)
-    p3 = plot(gap, main = paste(sampleid[i],"predicted clusters=",k))
     k = NULL
     k <- maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax #firstmax #globalmax
     print(paste(sampleid[i],"nmut=",nmut,"clusters=",k,"...Done!\n")) #2
+    p3 = plot(gap, main = paste(sampleid[i],"predicted clusters=",k))
+
     p1
     p2
     p3
