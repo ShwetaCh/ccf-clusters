@@ -32,7 +32,14 @@ for(i in 1:N){
   formatted_data = NULL; gap = NULL; k = NULL; cl =NULL; 
   formatted_data = as.data.frame(cbind(density_data$x, density_data$y)); names(formatted_data) = c('CCF','Density')
   head(formatted_data)
-  gap = clusGap(formatted_data, kmeans, d.power = 2, K.max=ceiling(nmut/10), B=100) #
+ 
+  if(nmut<65){
+    kmax = floor(nmut/15)} else{
+      kmax = floor(nmut/10)  
+    }
+  
+  gap = clusGap(formatted_data, kmeans, d.power = 2,K.max = kmax, B=100)
+ 
   k = maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax
       if(nmut >= 65){
         cl = k + 1} else{
