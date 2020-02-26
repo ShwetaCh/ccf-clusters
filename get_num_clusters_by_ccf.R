@@ -8,12 +8,14 @@ sampleid = c(
              ,'s_C_006799_P001_d','s_C_006757_P002_d','s_C_000796_P001_d','s_C_001566_M001_d','s_C_006846_M001_d','s_C_001699_P001_d')
 length(sampleid)
 for(i in 1:length(sampleid)){
-  
+ # i=3
   par(mfrow=c(3,1))
   set.seed(100)
+  p1 = NULL; p2 = NULL; p3 = NULL;
   #wes
   data = NULL
   data = filter(wesmaf, Tumor_Sample_Barcode == sampleid[i]) %>% 
+    #filter(Variant_Classification %in% exonic_variant_class) %>% 
     select(ccf_expected_copies_em) %>% filter(ccf_expected_copies_em >=0) %>%
     mutate_all( ~replace(., is.na(.), 0))
   dim(data)
@@ -24,15 +26,18 @@ for(i in 1:length(sampleid)){
   density_data = density(data$ccf_expected_copies_em)
   p2 = plot(density_data, main = sampleid[i])
   
-  formatted_data = NULL; gap = NULL; k = NULL 
+  formatted_data = NULL; gap = NULL; k = NULL; cl =NULL; 
   formatted_data = as.data.frame(cbind(density_data$x, density_data$y)); names(formatted_data) = c('CCF','Density')
-  #head(formatted_data)
-  gap = clusGap(formatted_data, kmeans, K.max=ceiling(nmut/10), B=100)
-  k = maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax #firstmax #globalmax
-  p3 = plot(gap, main = paste(sampleid[i],"predicted clusters=",k))
-  p1; 
-  p2; 
-  p3;
-  print(paste(sampleid[i],"nmut=",nmut,"clusters=",k,"...Done!\n"))
+  head(formatted_data)
+  gap = clusGap(formatted_data, kmeans, d.power = 2, K.max=ceiling(nmut/10), B=100) #
+  k = maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax
+  if(nmut>=65){
+    cl=k+1}else{
+    cl = k}
+  p3 = plot(gap, main = paste(sampleid[i],"PREDICTED CLUSTERS=",cl))
+  p1
+  p2
+  p3
+  print(paste(sampleid[i],"nmut=",nmut,"clusters=",cl,"...Done!"))
   
 }
