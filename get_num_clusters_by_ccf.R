@@ -7,11 +7,10 @@ library(stringr)
 #mycluster <- function(x, k) list(cluster=cutree(hclust(mydist(x), method = "ward.D2"),k=k))
 #pam1 = function(x, k){list(cluster = pam(x,k, cluster.only=TRUE))}
 
-sampleid = c(
-  's_C_000012_T001_d','s_C_000167_T001_d','s_C_000170_T001_d','s_C_001395_P001_d','s_C_002747_T001_d','s_C_L3KR5D_M001_d','s_C_001747_P001_d','s_C_001387_P001_d','s_C_NT4RPH_M001_d','s_C_NT4RPH_M002_d','s_C_AE20L6_M001_d'
-             ,'s_C_006799_P001_d','s_C_006757_P002_d','s_C_000796_P001_d','s_C_001566_M001_d','s_C_006846_M001_d','s_C_001699_P001_d')
-length(sampleid)
-for(i in 1:length(sampleid)){
+sampleid = c('s_C_000012_T001_d','s_C_000167_T001_d','s_C_000170_T001_d','s_C_001395_P001_d','s_C_002747_T001_d')
+N = length(sampleid)
+
+for(i in 1:N){
  # i=3
   par(mfrow = c(3,1))
   set.seed(100)
