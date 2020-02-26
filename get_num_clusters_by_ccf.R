@@ -1,4 +1,8 @@
 library(cluster)
+library(plyr)
+library(dplyr)
+library(stringr)
+
 #mydist <- function(x) as.dist((1-cor(t(x)))/2)
 #mycluster <- function(x, k) list(cluster=cutree(hclust(mydist(x), method = "ward.D2"),k=k))
 #pam1 = function(x, k){list(cluster = pam(x,k, cluster.only=TRUE))}
