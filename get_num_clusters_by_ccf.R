@@ -34,8 +34,10 @@ for(i in 1:N){
   head(formatted_data)
  
   if(nmut<65){
-    kmax = floor(nmut/15)} else{
-      kmax = floor(nmut/10)  
+    kmax = floor(nmut/15); 
+    if(kmax <= 1){ kmax = 2} #Errors out when K.max is 1, can't do clustering anymore
+    } else{
+      kmax = ceiling(nmut/10)  
     }
   
   gap = clusGap(formatted_data, kmeans, d.power = 2,K.max = kmax, B=100)
