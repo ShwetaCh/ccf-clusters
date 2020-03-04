@@ -2,6 +2,7 @@ library(cluster)
 library(plyr)
 library(dplyr)
 library(stringr)
+library(data.table)
 
 #mydist <- function(x) as.dist((1-cor(t(x)))/2)
 #mycluster <- function(x, k) list(cluster=cutree(hclust(mydist(x), method = "ward.D2"),k=k))
