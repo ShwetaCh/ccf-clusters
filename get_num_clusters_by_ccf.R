@@ -55,7 +55,10 @@ for(i in 1:N)
             #   } else{
             #     kmax = ceiling(nmut/10)  
             #   }
-            kmax = 9
+            
+            #kmax = 9
+            kmax = ceiling(nmut/15)
+
             gap = clusGap(formatted_data, kmeans, d.power = 2, K.max = kmax, B=100)
             k = maxSE(gap$Tab[, "gap"], gap$Tab[, "SE.sim"], method="Tibs2001SEmax") #Tibs2001SEmax #globalSEmax #firstSEmax
             #kmeans(formatted_data, centers=5, iter.max = 100, trace=FALSE)
